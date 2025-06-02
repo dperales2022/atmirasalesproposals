@@ -9,7 +9,7 @@ const salesProposalSchema = z.object({
   customer: z.string().describe("Name of the client or customer"),
   industry: z.string().describe("Industry sector of the customer (e.g., Insurance, Banking, Retail)"),
   projectTitle: z.string().optional().describe("Title of the sales proposal or project"),
-  date: z.string().optional().describe("Date of the proposal"),
+  date: z.string().nullable().optional().describe("Date of the proposal"),
   objectives: z.string().describe("Detailed narrative of the project objectives using the original document's language and tone"),
   scope: z.string().describe("Detailed narrative of the project scope using the original document's language and tone"),
   technologies: z.string().describe("Detailed narrative of all technologies, platforms, and tools involved, using original business language"),
