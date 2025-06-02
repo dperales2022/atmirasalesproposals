@@ -4,35 +4,36 @@ const z = require("zod");
 const { ChatPromptTemplate } = require("@langchain/core/prompts");
 const { ChatOpenAI } = require("@langchain/openai");
 
-// Sales Proposal Schema
+// Sales Proposal Schema (updated)
 const salesProposalSchema = z.object({
   customer: z.string().describe("Name of the client or customer"),
   industry: z.string().describe("Industry sector of the customer (e.g., Insurance, Banking, Retail)"),
   projectTitle: z.string().optional().describe("Title of the sales proposal or project"),
   date: z.string().optional().describe("Date of the proposal"),
-  objectives: z.array(z.string()).describe("List of project or business objectives described in the proposal"),
-  scope: z.array(z.string()).describe("Scope of the project or services to be provided"),
+  objectives: z.string().describe("Detailed narrative of the project objectives using the original document's language and tone"),
+  scope: z.string().describe("Detailed narrative of the project scope using the original document's language and tone"),
   technologies: z.array(z.string()).describe("List of technologies, platforms, or tools proposed"),
   solutionSummary: z.string().describe("Summary of the proposed solution"),
 });
 
-// Prompt for sales proposals
+// Updated prompt
 const SALES_PROPOSAL_PROMPT = `
 You are an expert in extracting structured information from business sales proposals.
 
-Your task is to extract the following:
+Your task is to extract the following fields from the proposal:
 1. The customer name.
 2. The customer's industry (e.g., Insurance, Banking, Retail).
-3. Project title and version if available.
+3. The project title and version if available.
 4. The date of the proposal.
-5. Project objectives and scope.
-6. Summary of the proposed solution and the technologies mentioned.
+5. A detailed narrative of the project objectives (as one single paragraph or block of text using the original language and professional tone).
+6. A detailed narrative of the project scope (as one single paragraph or block of text using the original language and professional tone).
+7. A list of technologies, platforms, or tools mentioned.
+8. A concise summary of the proposed solution.
 
-Please normalize technology names (e.g., Power BI, JavaScript, .NET) and clean the extracted data. If a field is not available, omit it.
+Use business language as in the original document. Normalize technology names. Clean up formatting but preserve meaning.
 Return the result as structured JSON.
 `;
 
-// Simple hash function to generate a number from a string
 function hashStringToNumber(str) {
   let hash = 0;
   for (let i = 0; i < str.length; i++) {
@@ -106,3 +107,4 @@ async function handler(req, res) {
 }
 
 module.exports = handler;
+
