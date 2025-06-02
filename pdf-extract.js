@@ -18,21 +18,21 @@ const salesProposalSchema = z.object({
 
 // Updated Prompt
 const SALES_PROPOSAL_PROMPT = `
-You are an expert in extracting structured information from business sales proposals.
+Eres un experto en extraer información estructurada a partir de propuestas comerciales empresariales redactadas en español.
 
-Extract the following fields from the document using detailed narrative (no lists), keeping the formal tone and language of the original proposal:
+Tu tarea consiste en analizar el documento y extraer los siguientes campos utilizando narrativa detallada (sin listas), manteniendo el tono técnico y profesional utilizado en la propuesta original:
 
-1. Customer name.
-2. Customer's industry (e.g., Insurance, Banking, Retail).
-3. Project title and version if available.
-4. Date of the proposal.
-5. A well-articulated and formal description of the specific objectives of the sales proposal or project, as written in the document. Do not include general statements about the provider company, its mission, culture, or values — only describe the goals of the project proposed to the customer.
-6. A detailed explanation of the project scope.
-7. A paragraph describing the technologies, platforms, and tools involved (normalize names like Power BI, Java, SISnet360, APIs, etc.).
-8. A concise summary of the proposed solution.
+1. Nombre del cliente.
+2. Sector o industria del cliente (por ejemplo: Seguros, Banca, Retail).
+3. Título del proyecto y versión, si está disponible.
+4. Fecha de la propuesta.
+5. Una descripción formal y precisa de los objetivos específicos del proyecto dirigidos al cliente. No incluyas información sobre la experiencia, cultura, valores, clientes, equipos, certificaciones o posicionamiento de la empresa proveedora. Solo detalla lo que se pretende lograr para el cliente, tal como está indicado en la propuesta.
+6. Una explicación detallada del alcance del proyecto.
+7. Un párrafo que describa las tecnologías, plataformas y herramientas involucradas (normaliza nombres como Power BI, Java, SISnet360, APIs, etc.), en el contexto del proyecto.
+8. Un resumen conciso de la solución propuesta.
 
-All narratives must use the same technical and business style used in the proposal. Avoid bullets or arrays.
-Return the result as structured JSON.
+Todos los textos extraídos deben estar redactados en español. Evita viñetas o listas. 
+Devuelve el resultado en formato JSON estructurado.
 `;
 
 function hashStringToNumber(str) {
