@@ -26,7 +26,7 @@ Extract the following fields from the document using detailed narrative (no list
 2. Customer's industry (e.g., Insurance, Banking, Retail).
 3. Project title and version if available.
 4. Date of the proposal.
-5. A well-articulated and formal description of the project objectives.
+5. A well-articulated and formal description of the specific objectives of the sales proposal or project, as written in the document. Do not include general statements about the provider company, its mission, culture, or values — only describe the goals of the project proposed to the customer.
 6. A detailed explanation of the project scope.
 7. A paragraph describing the technologies, platforms, and tools involved (normalize names like Power BI, Java, SISnet360, APIs, etc.).
 8. A concise summary of the proposed solution.
