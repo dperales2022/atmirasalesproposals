@@ -4,7 +4,7 @@ const z = require("zod");
 const { ChatPromptTemplate } = require("@langchain/core/prompts");
 const { ChatOpenAI } = require("@langchain/openai");
 
-// Sales Proposal Schema (updated)
+// Updated Sales Proposal Schema
 const salesProposalSchema = z.object({
   customer: z.string().describe("Name of the client or customer"),
   industry: z.string().describe("Industry sector of the customer (e.g., Insurance, Banking, Retail)"),
@@ -12,25 +12,26 @@ const salesProposalSchema = z.object({
   date: z.string().optional().describe("Date of the proposal"),
   objectives: z.string().describe("Detailed narrative of the project objectives using the original document's language and tone"),
   scope: z.string().describe("Detailed narrative of the project scope using the original document's language and tone"),
-  technologies: z.array(z.string()).describe("List of technologies, platforms, or tools proposed"),
+  technologies: z.string().describe("Detailed narrative of all technologies, platforms, and tools involved, using original business language"),
   solutionSummary: z.string().describe("Summary of the proposed solution"),
 });
 
-// Updated prompt
+// Updated Prompt
 const SALES_PROPOSAL_PROMPT = `
 You are an expert in extracting structured information from business sales proposals.
 
-Your task is to extract the following fields from the proposal:
-1. The customer name.
-2. The customer's industry (e.g., Insurance, Banking, Retail).
-3. The project title and version if available.
-4. The date of the proposal.
-5. A detailed narrative of the project objectives (as one single paragraph or block of text using the original language and professional tone).
-6. A detailed narrative of the project scope (as one single paragraph or block of text using the original language and professional tone).
-7. A list of technologies, platforms, or tools mentioned.
+Extract the following fields from the document using detailed narrative (no lists), keeping the formal tone and language of the original proposal:
+
+1. Customer name.
+2. Customer's industry (e.g., Insurance, Banking, Retail).
+3. Project title and version if available.
+4. Date of the proposal.
+5. A well-articulated and formal description of the project objectives.
+6. A detailed explanation of the project scope.
+7. A paragraph describing the technologies, platforms, and tools involved (normalize names like Power BI, Java, SISnet360, APIs, etc.).
 8. A concise summary of the proposed solution.
 
-Use business language as in the original document. Normalize technology names. Clean up formatting but preserve meaning.
+All narratives must use the same technical and business style used in the proposal. Avoid bullets or arrays.
 Return the result as structured JSON.
 `;
 
@@ -107,4 +108,5 @@ async function handler(req, res) {
 }
 
 module.exports = handler;
+
 
