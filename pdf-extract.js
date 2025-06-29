@@ -12,7 +12,7 @@ const salesProposalSchema = z.object({
   date: z.string().nullable().optional().describe("Date of the proposal"),
   objectives: z.string().describe("Detailed narrative of the project objectives using the original document's language and tone"),
   scope: z.string().describe("Detailed narrative of the project scope using the original document's language and tone"),
-  technologies: z.string().describe("Detailed narrative of all technologies, platforms, and tools involved, using original business language"),
+  technologies: z.string().describe("Lista separada por ';' de las tecnologías, plataformas y herramientas detectadas. Si no se identifica ninguna, debe decir: 'No se han identificado tecnologías'"),
   solutionSummary: z.string().describe("Summary of the proposed solution"),
 });
 
@@ -28,7 +28,7 @@ Tu tarea consiste en analizar el documento y extraer los siguientes campos utili
 4. Fecha de la propuesta.
 5. Una descripción formal y precisa de los objetivos específicos del proyecto dirigidos al cliente. No incluyas información sobre la experiencia, cultura, valores, clientes, equipos, certificaciones o posicionamiento de la empresa proveedora. Solo detalla lo que se pretende lograr para el cliente, tal como está indicado en la propuesta.
 6. Una explicación detallada del alcance del proyecto.
-7. Un párrafo que describa las tecnologías, plataformas y herramientas involucradas (normaliza nombres como Power BI, Java, SISnet360, APIs, etc.), en el contexto del proyecto.
+7. Extrae todas las tecnologías, plataformas y herramientas mencionadas en el documento (por ejemplo: Power BI, Java, SISnet360, APIs, Salesforce, etc.). Devuelve solo una lista de nombres separados por punto y coma (;). Si no se identifica ninguna, responde con: No se han identificado tecnologías.
 8. Un resumen conciso de la solución propuesta.
 
 Todos los textos extraídos deben estar redactados en español. Evita viñetas o listas. 
